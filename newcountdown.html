@@ -6,125 +6,107 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
     <title>Document</title>
     <style>
-
-body{
-    background-color: white;
-}
-  
-#timer {
-  color: #239CBB;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Lato', sans-serif;
-  font-size: .7em;
-  letter-spacing: 5px;
-}
-
-.days, .hours {
-  display: inline-block;
-  padding: 20px;
-  width: 100px;
-  border-radius: 5px;
-}
-
-.days {
-  background: #8CCCE4;
-  color: #239CBB;
-}
-
-.hours {
-  background: #8CCCE4;
-  color: #239CBB;
- }
-
-
-.numbers {
-  font-family: 'Montserrat', sans-serif;
-  color:  #239CBB;
-  font-size: 4em;
-  text-align: center;
-}
-
-.white {
-  position: absolute;
-  background:  #eeeeee;
-  height: 85px;
-  width: 75px;
-  left: 30%;
-  top: 2%;
-}
-
-.red {
-  position: absolute;
-  background:  #EF2F3C;
-  left: 18%;
-  top: 9%;
-  height: 65px;
-  width: 70px;
- 
-}
-
-.blue {
-  position: absolute;
-  background:  #276FBF;
-  height: 80px;
-  width: 80px;
-  left: 60%;
-  top: 5%;
-
-}
-
-#birthday-text {
-    margin-top: 50px;
-    font-size: 1em;
-    color: #8CCCE4;
-    text-align: center;
-    
-}        
-
-
+        body {
+            background-color: white;
+        }
+        #timer {
+            color: #239CBB;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Lato', sans-serif;
+            font-size: .7em;
+            letter-spacing: 5px;
+        }
+        .days, .hours {
+            display: inline-block;
+            padding: 20px;
+            width: 100px;
+            border-radius: 5px;
+        }
+        .days {
+            background: #8CCCE4;
+            color: #239CBB;
+        }
+        .hours {
+            background: #8CCCE4;
+            color: #239CBB;
+        }
+        .numbers {
+            font-family: 'Montserrat', sans-serif;
+            color: #239CBB;
+            font-size: 4em;
+            text-align: center;
+        }
+        .white {
+            position: absolute;
+            background: #eeeeee;
+            height: 85px;
+            width: 75px;
+            left: 30%;
+            top: 2%;
+        }
+        .red {
+            position: absolute;
+            background: #EF2F3C;
+            left: 18%;
+            top: 9%;
+            height: 65px;
+            width: 70px;
+        }
+        .blue {
+            position: absolute;
+            background: #276FBF;
+            height: 80px;
+            width: 80px;
+            left: 60%;
+            top: 5%;
+        }
+        #birthday-text {
+            margin-top: 50px;
+            font-size: 1em;
+            color: #8CCCE4;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    
-<div id="timer">
+    <div id="timer">
+        <div class="days">
+            <div id="days" class="numbers"> </div>days
+        </div>
+        <div class="hours">
+            <div id="hours" class="numbers"> </div>hours
+        </div>
+    </div>
+    <div id="birthday-text">
+        My birthday is on December 22, 2025
+    </div>
+    <script>
+        const myDate = new Date('Dec 22, 2025 00:00:00');
 
-    <div class="days"> 
-        <div id="days" class="numbers "> </div>days</div> 
-      <div class="hours"> 
-        <div  id="hours" class="numbers"> </div>hours</div>  
-      </div>
-</div>
+        // countdown
+        let timer = setInterval(function() {
+            // get today's date
+            const today = new Date().getTime();
 
- <div id="birthday-text">
-    My birthday is on December 22, 2025
-</div>   
+            // get the difference
+            const diff = myDate - today;
 
+            // math
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            // display
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+
+            // Stop the timer once the date is reached
+            if (diff <= 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerHTML = 0;
+                document.getElementById("hours").innerHTML = 0;
+            }
+        }, 1000);
+    </script>
 </body>
-<script>
-    const year = new Date().getFullYear();
-const myDate = new Date('Dec 22, 2025 00:00:00');
-console.log(myDate);
-
-// countdown
-let timer = setInterval(function() {
-
-  // get today's date
-  const today = new Date().getTime();
-
-  // get the difference
-  const diff = myDate - today;
-
-  // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
- 
-  // display
-  document.getElementById("days").innerHTML=days
-  document.getElementById("hours").innerHTML=hours
-  
-
-
-}, 1);
-</script>
 </html>
